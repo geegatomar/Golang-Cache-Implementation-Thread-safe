@@ -139,7 +139,6 @@ func (c *Cache) ViewCacheElements() {
 }
 
 func (c *Cache) GetAllKeysSorted() []string {
-	// var sorted []string{}
 	sorted := []string{}
 	c.mutex.RLock()
 	for k, v := range c.kv {

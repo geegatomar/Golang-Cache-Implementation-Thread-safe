@@ -3,12 +3,16 @@
 ### Problem Statement
 Design and Implement an in-memory caching library for general use.
 <br>
+<br>
 *Must Have*
 - Support for multiple Standard Eviction Policies ( FIFO, LRU, LIFO ) <br>
 - Support to add custom eviction policies
 <br>
+
 *Good To Have*
 - Thread saftey
+
+<br>
 
 ### My Solution
 

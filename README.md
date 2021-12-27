@@ -1,6 +1,6 @@
 # Cache Implementation in GoLang
 
-### Problem Statement
+## Problem Statement
 Design and Implement an in-memory caching library for general use.
 <br>
 <br>
@@ -14,10 +14,9 @@ Design and Implement an in-memory caching library for general use.
 
 <br>
 
-### My Solution
+## My Solution
 
-#### Explanation of the project
-
+### Explanation of the project
 - The *cache* package has the implementation of the main cache, which has a map of key-value pair as its member.
 - There is another package called *evictor* which only handles the eviction, and is independent of the cache package; hence decoupling the logic of the cache and the eviction strategies.
 - The eviction function is called inside the Put() method after inserting an element into the cache.
@@ -26,15 +25,15 @@ Design and Implement an in-memory caching library for general use.
 - For LRU's implementation, we are making use of the timeOfLastAccess which gets updated whenever the element was accessed. And we use a minHeap to implement it in our code using the PriorityQueue which always keeps the element with the oldest time on top for extraction next.
 
 
-#### Highlights of the project
+### Highlights of the project
 - The evictor has been made an interface, and every/any strategy (LRU, FIFO, LIFO, Random, etc) we want to add-on can be done by implementing this interface.
 - The cache implementation and the eviction strategies are decoupled, making it easily pluggable for anyone to add more strategies.
 - Its is thread safe since we are making use of RWMutex and acquiring lock whenever we are accessing the shared memory in the implemented cache (in our case it is both c.kv and c.ev).
 - The evictor interface need not take care of thread safety as the cache itself will take care of that.
-- We have set an eviction percentage, hence Evict is not called very often, and whenever called, it is called for very few entries.
+- We have set an eviction percentage, hence Evict is not called very often, and whenever called, it is called for few entries.
 
 
-#### Simple Testing
+### Simple Testing
 The two major test files are: 
 1. main_stress_test.go 
   - This is doing an end to end stress test with multiple go routines where we are simultaneuously adding/getting/deleting from the cache. Hence also checks if its thread safe and ensures that we don't enter a deadlock.
@@ -45,8 +44,9 @@ The two major test files are:
  
 
 
-#### Caveats and Future Improvements
+### Caveats and Future Improvements
 1. Other data structures can be explored for implementing the LRU eviction. Currently we have used a PriorityQueue (minHeap), but other options can be explored here which give a better time complexity on some of the operations.
+And hence the internal implementations of these functions and methods can be changed to modify the 
 2. More fine grained mutexes can be used. 
 3. Adding more extensive testing.
-4. Ability to run the eviction as a background thread (similar to a daemon thread like a garbage collector) which always evicts once it detects that cache size is exceeding.
+4. Ability to run the eviction as a background thread (similar to a daemon thread like a garbage collector) which always evicts once it detects that cache size is exceeding the max limit.

@@ -41,7 +41,7 @@ The two major test files are:
   - To run:  `go test -v main_stress_test.go`
 2. main_test.go.
   - This has muliple smaller individual unittests to test smaller functionalities in the code.
-  - To run:  `go test -v main__test.go`
+  - To run:  `go test -v main_test.go`
  
 
 

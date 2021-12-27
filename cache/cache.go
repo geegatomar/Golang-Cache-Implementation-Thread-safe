@@ -97,6 +97,14 @@ func (c *Cache) Put(key string, value string) {
 		fmt.Println("Evicting", toEvict, "out of", c.curSize, "elements...")
 		fmt.Println("Size of cache: ", c.GetSize())
 
+		// The Evict method takes a callback function which gets called and executed inside the
+		// Evict method. Another way of doing this is to pass the entire cache as an argument in
+		// the function but the down-side of that is that the cache implementation would become
+		// tightly coupled but with this current implementation we have both the cache and evictor
+		// decoupled and independent.
+
+		// So here the internal Evict function will only return the key to be evicted each time and to
+		// indicate when we should stop evicting, we have made this callback function return a boolean
 		c.ev.Evict(func(key string) bool {
 			numEvicted++
 			// For each element selected by our evictor, we delete it from the map in the cache.

@@ -21,7 +21,7 @@ Design and Implement an in-memory caching library for general use.
 - There is another package called *evictor* which only handles the eviction, and is independent of the cache package; hence decoupling the logic of the cache and the eviction strategies.
 - The eviction function is called inside the Put() method after inserting an element into the cache.
 - We are setting an eviction percentage which decides how many of the current elements in the cache will get evicted. So if the current size of the cache is 100 (and has exceeded the max limit of the cache size), and the eviction percentage is 30%, then after the eviction only 70 entries will remain in the cache. Reason for doing so is that we don't want to call the expensive evict operation very frequently.
-- The implementation for FIFO, LIFO and LRU have been included in their respective packages, and the eay support for adding any custom eviction policy.
+- The implementation for FIFO, LIFO and LRU have been included in their respective packages, and the easy support for adding any custom eviction policy.
 - For LRU's implementation, we are making use of the timeOfLastAccess which gets updated whenever the element was accessed. And we use a minHeap to implement it in our code using the PriorityQueue which always keeps the element with the oldest time on top for extraction next.
 
 

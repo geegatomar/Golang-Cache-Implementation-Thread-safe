@@ -46,7 +46,7 @@ The two major test files are:
 
 ### Caveats and Future Improvements
 1. Other data structures can be explored for implementing the LRU eviction. Currently we have used a PriorityQueue (minHeap), but other options can be explored here which give a better time complexity on some of the operations.
-And hence the internal implementations of these functions and methods can be changed to modify the 
+And hence the internal implementations of these functions and methods can be changed to improve the performance accordingly.
 2. More fine grained mutexes can be used. 
 3. Adding more extensive testing.
 4. Ability to run the eviction as a background thread (similar to a daemon thread like a garbage collector) which always evicts once it detects that cache size is exceeding the max limit.
